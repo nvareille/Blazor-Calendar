@@ -64,7 +64,8 @@
                                 classPointer = " cursor-pointer";
 
                                 <div class="@($"hour-task {classPin}{classPointer}")" style="grid-column-start: @column; @taskColor"
-                                     draggable="@Draggable.ToString()" @ondragstart="() => HandleDragStart(t.ID)">
+                                     draggable="@Draggable.ToString()" @ondragstart="() => HandleDragStart(t.ID)"
+                                     @onclick="() => HandleClickEvent(t)">
                                     @t.Code
                                 </div>
 

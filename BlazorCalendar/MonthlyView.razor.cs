@@ -66,18 +66,19 @@ partial class MonthlyView : CalendarBase
     }
 
 
-    private async Task ClickTaskInternal(MouseEventArgs e, int taskID, DateTime day)
+    private async Task ClickTaskInternal(MouseEventArgs e, Tasks task, DateTime day)
     {
         if (!TaskClick.HasDelegate) return;
  
 		List<int> listID = new()
 		{
-			taskID
+			task.ID
 		};
 
 		ClickTaskParameter clickTaskParameter = new()
         {
             IDList = listID,
+            Tasks = new [] { task },
             X = e.ClientX,
             Y = e.ClientY,
             Day = day
@@ -93,22 +94,19 @@ partial class MonthlyView : CalendarBase
 		if (!TaskClick.HasDelegate) return;
 
 		// There can be several tasks in one day :
-		List<int> listID = new();
         if (TasksList != null)
         {
-            for (var k = 0; k < TasksList.Length; k++)
-            {
-                Tasks t = TasksList[k];
-
-                if (t.DateStart.Date <= day.Date && day.Date <= t.DateEnd.Date)
-                {
-                    listID.Add(t.ID);
-                }
-            }
+            Tasks[] tasks = TasksList
+                .Where(i => i.DateStart.Date <= day.Date
+                            && day.Date <= i.DateEnd.Date)
+                .ToArray();
 
             ClickTaskParameter clickTaskParameter = new()
             {
-                IDList = listID,
+                IDList = tasks
+                    .Select(i => i.ID)
+                    .ToList(),
+                Tasks = tasks,
                 X = e.ClientX,
                 Y = e.ClientY,
                 Day = day

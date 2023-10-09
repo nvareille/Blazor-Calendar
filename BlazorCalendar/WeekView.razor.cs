@@ -80,6 +80,19 @@ partial class WeekView : CalendarBase
         TaskDragged = null;
     }
 
+    private async Task HandleClickEvent(Tasks ev)
+    {
+        await TaskClick.InvokeAsync(new ClickTaskParameter
+        {
+            IDList = new List<int>
+            {
+                ev.ID
+            },
+            Tasks = new [] { ev },
+            Day = ev.DateStart
+        });
+    }
+
     private string GetBackground(DateTime day)
     {
         int d = (int)day.DayOfWeek;

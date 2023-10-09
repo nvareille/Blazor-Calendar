@@ -70,27 +70,21 @@ partial class AnnualView : CalendarBase
         if (day == default) return;
 
         // There can be several tasks in one day :
-        List<int> listID = new();
-        if (TasksList != null )
-        {
-            for (var k = 0; k < TasksList.Length; k++)
-            {
-                Tasks t = TasksList[k];
+        Tasks[] tasks = (TasksList ?? Array.Empty<Tasks>())
+            .Where(i => i.DateStart.Date <= day.Date 
+                        && day.Date <= i.DateEnd.Date)
+            .ToArray();
 
-                if (t.DateStart.Date <= day.Date && day.Date <= t.DateEnd.Date)
-                {
-                    listID.Add(t.ID);
-                }
-            }
-        }
-
-        if (listID.Count > 0)
+        if (tasks.Length > 0)
         {
             if (TaskClick.HasDelegate)
 			{
 				ClickTaskParameter clickTaskParameter = new()
 				{
-					IDList = listID,
+					IDList = tasks
+                        .Select(i => i.ID)
+                        .ToList(),
+                    Tasks = tasks,
 					X = e.ClientX,
 					Y = e.ClientY,
 					Day = day
