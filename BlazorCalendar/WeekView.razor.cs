@@ -1,8 +1,8 @@
-﻿namespace BlazorCalendar;
+﻿using Microsoft.AspNetCore.Components;
+using TheLair.BlazorCalendar.Base;
+using TheLair.BlazorCalendar.Models;
 
-using BlazorCalendar.Models;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+namespace TheLair.BlazorCalendar;
 
 partial class WeekView : CalendarBase
 {

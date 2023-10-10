@@ -1,6 +1,6 @@
-﻿namespace BlazorCalendar.Models;
+﻿using System.Diagnostics;
 
-using System.Diagnostics;
+namespace TheLair.BlazorCalendar.Models;
 
 [DebuggerDisplay("{ID} {Code} {DateStart}")]
 public sealed class Tasks

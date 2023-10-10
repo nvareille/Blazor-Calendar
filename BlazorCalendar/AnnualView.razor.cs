@@ -1,9 +1,9 @@
-﻿namespace BlazorCalendar;
-
-using BlazorCalendar.Models;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using TheLair.BlazorCalendar.Base;
+using TheLair.BlazorCalendar.Models;
 
+namespace TheLair.BlazorCalendar;
 
 partial class AnnualView : CalendarBase
 {

@@ -1,6 +1,6 @@
-﻿namespace BlazorCalendar;
+﻿using System.Globalization;
 
-using System.Globalization;
+namespace TheLair.BlazorCalendar.Helpers;
 
 internal sealed class Dates
 {

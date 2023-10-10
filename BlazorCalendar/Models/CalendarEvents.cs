@@ -1,4 +1,4 @@
-﻿namespace BlazorCalendar.Models;
+﻿namespace TheLair.BlazorCalendar.Models;
 
 public class ClickTaskParameter
 {

@@ -1,4 +1,6 @@
-﻿namespace BlazorCalendar.Styles;
+﻿using TheLair.BlazorCalendar.Models;
+
+namespace TheLair.BlazorCalendar.Styles;
 
 public sealed class Colors
 {

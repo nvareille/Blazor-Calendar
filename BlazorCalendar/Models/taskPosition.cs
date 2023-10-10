@@ -1,4 +1,4 @@
-﻿namespace BlazorCalendar;
+﻿namespace TheLair.BlazorCalendar.Models;
 
 internal sealed class TaskPosition
 {

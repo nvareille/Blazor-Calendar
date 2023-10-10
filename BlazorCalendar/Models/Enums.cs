@@ -1,6 +1,6 @@
-﻿namespace BlazorCalendar;
+﻿using System.ComponentModel;
 
-using System.ComponentModel;
+namespace TheLair.BlazorCalendar.Models;
 
 public enum PriorityLabel
 {

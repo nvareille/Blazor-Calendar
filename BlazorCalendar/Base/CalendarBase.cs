@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazorCalendar;
+namespace TheLair.BlazorCalendar.Base;
 
 public abstract class CalendarBase : ComponentBase
 {
