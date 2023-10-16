@@ -36,44 +36,49 @@
             </div>
 
             <div class="hours">
+                @{
+                    DateTime hours = day.Add(ScheduleStart.ToTimeSpan());
+                    DateTime end = day.Add(ScheduleEnd.ToTimeSpan());
 
-                @for (var hour = 0; hour < 24; hour++)
-                {
-                    DateTime hours = day.AddHours(hour);
-
-                    <div class="hour day-cellule" ondragover="event.preventDefault();" @ondrop:preventDefault="true" @ondrop="() => HandleDayOnDrop(hours)">
-                        @hours.ToString("HH:mm")
-                    </div>
-
-                    @if (TasksList != null)
+                    while (hours <= end)
                     {
-                        int column = 1;
+                        <div class="hour day-cellule" ondragover="event.preventDefault();" @ondrop:preventDefault="true" @ondrop="() => HandleDayOnDrop(hours)">
+                            @hours.ToString("HH:mm")
+                        </div>
 
-                        for (var k = 0; k < TasksList.Length; k++)
+                        @if (TasksList != null)
                         {
-                            Tasks t = TasksList[k];
+                            int column = 1;
 
-                            if (t.DateEnd > hours && t.DateStart <= hours)
+                            for (var k = 0; k < TasksList.Length; k++)
                             {
-                                column++;
+                                Tasks t = TasksList[k];
 
-                                taskColor = Colors.GetHatching(t.FillStyle, t.Color);
-                                taskColor = $"{taskColor};color:{t.ForeColor}";
+                                if (t.DateEnd > hours && t.DateStart <= hours)
+                                {
+                                    column++;
 
-                                classPin = string.IsNullOrWhiteSpace(t.Comment) ? null : " pin";
-                                classPointer = " cursor-pointer";
+                                    taskColor = Colors.GetHatching(t.FillStyle, t.Color);
+                                    taskColor = $"{taskColor};color:{t.ForeColor}";
 
-                                <div class="@($"hour-task {classPin}{classPointer}")" style="grid-column-start: @column; @taskColor"
-                                     draggable="@Draggable.ToString()" @ondragstart="() => HandleDragStart(t.ID)"
-                                     @onclick="() => HandleClickEvent(t)">
-                                    @t.Code
-                                </div>
+                                    classPin = string.IsNullOrWhiteSpace(t.Comment) ? null : " pin";
+                                    classPointer = " cursor-pointer";
 
+                                    <div class="@($"hour-task {classPin}{classPointer}")" style="grid-column-start: @column; @taskColor"
+                                         draggable="@Draggable.ToString()" @ondragstart="() => HandleDragStart(t.ID)"
+                                         @onclick="() => HandleClickEvent(t)">
+                                        @t.Code
+                                    </div>
+
+                                }
                             }
                         }
-                    }
 
+                        hours = hours.Add(Units);
+                    }
                 }
+
+                
             </div>
 
         </div>

@@ -48,6 +48,15 @@ partial class WeekView : CalendarBase
     [Parameter]
     public EventCallback<DragDropParameter> DropTask { get; set; }
 
+    [Parameter]
+    public TimeOnly ScheduleStart { get; set; } = TimeOnly.MinValue;
+
+    [Parameter]
+    public TimeOnly ScheduleEnd { get; set; } = TimeOnly.MaxValue;
+
+    [Parameter]
+    public TimeSpan Units { get; set; } = TimeSpan.FromHours(1);
+
     private Tasks? TaskDragged;
     private async Task HandleDragStart(int taskID)
     {

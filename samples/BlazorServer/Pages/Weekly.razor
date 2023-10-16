@@ -1,7 +1,7 @@
 ﻿@page "/weeklyview"
-@using BlazorCalendar
-@using BlazorCalendar.Models
+
 @using System.Globalization
+@using TheLair.BlazorCalendar.Models
 
 <div class="d-flex flex-row mb-2">
 	<button type="button" @onclick="GoToday" class="btn">📅 Go Today</button>
@@ -39,7 +39,7 @@
 	private int months = 12;
 	private List<Tasks> TasksList;
 	private string fakeConsole = "";
-	private BlazorCalendar.PriorityLabel PriorityDisplay = PriorityLabel.Code;
+	private PriorityLabel PriorityDisplay = PriorityLabel.Code;
 	private bool draggable = true;
 
 	protected override void OnInitialized()

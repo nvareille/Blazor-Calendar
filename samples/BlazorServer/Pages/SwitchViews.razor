@@ -1,5 +1,6 @@
 ﻿@page "/switchview"
-@using BlazorCalendar
+
+@using TheLair.BlazorCalendar.Models
 
 <div class="d-flex flex-row mb-2">
 
@@ -18,7 +19,7 @@
 </CalendarContainer>
 
 @code{
-	private BlazorCalendar.DisplayedView SelectedView = DisplayedView.Annual;
+	private DisplayedView SelectedView = DisplayedView.Annual;
 	private string HeaderStyle = "cursor:pointer";
 
 	private void HeaderClick(DateTime monthclicked)
